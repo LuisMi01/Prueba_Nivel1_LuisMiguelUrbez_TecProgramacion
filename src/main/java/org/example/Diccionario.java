@@ -1,45 +1,47 @@
 package org.example;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import com.opencsv.CSVReader;
+
 public class Diccionario {
 
+    private HashMap<Character, LinkedList<String>> tablaHash;
 
-        private HashMap<String, String> tablaHash;
-
-        public Diccionario(String rutaArchivo) {
-            tablaHash = new HashMap<String, String>();
-            leerArchivoCSV(rutaArchivo);
+    public Diccionario() {
+        tablaHash = new HashMap<>();
+        for (char c = 'a'; c <= 'z'; c++) {
+            tablaHash.put(c, new LinkedList<String>());
         }
+    }
 
-        private void leerArchivoCSV(String rutaArchivo) {
-            BufferedReader lector = null;
+    public void agregarPalabra(String palabra) {
+        char primeraLetra = palabra.charAt(0);
+        LinkedList<String> palabrasConLetra = tablaHash.get(primeraLetra);
+        palabrasConLetra.add(palabra);
+    }
 
-            try {
-                lector = new BufferedReader(new FileReader(rutaArchivo));
-                String fila = lector.readLine();
+    public boolean buscarPalabra(String palabra) {
+        char primeraLetra = palabra.charAt(0);
+        LinkedList<String> palabrasConLetra = tablaHash.get(primeraLetra);
+        return palabrasConLetra.contains(palabra);
+    }
 
-                while (fila != null) {
-                    String[] datos = fila.split(",");
-                    tablaHash.put(datos[0], datos[1]);
-                    fila = lector.readLine();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (lector != null) {
-                        lector.close();
-                    }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+    public static void main(String[] args) {
+        String csvFile = "/Users/luismiguelurbez/Downloads/palabras.csv";
+        String line = "";
+        String csvSeparator = ",";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(csvSeparator);
             }
-        }
 
-        public String obtenerTraduccion(String palabra) {
-            return tablaHash.get(palabra);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
 }
