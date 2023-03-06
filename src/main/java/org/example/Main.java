@@ -21,7 +21,7 @@ public class Main {
         int posicion = funcion_hash(dato, tamano);
         LinkedList<String> lista = tabla.get(posicion);
         if (lista.contains(dato)) {
-            System.out.println("Se agregó el dato " + dato + " en la posicion " + posicion);
+           System.out.println("Se agregó el dato " + dato );
             return;
         }
         lista.add(dato);
@@ -40,7 +40,7 @@ public class Main {
         int posicion = funcion_hash(dato, tamano);
         LinkedList<String> lista = tabla.get(posicion);
         if (lista.contains(dato)) {
-            System.out.println("Dato" + dato +"encontrado en la posicion " + posicion);
+            System.out.println("Dato " + dato +" encontrado en la posicion " + posicion);
             return posicion;
         }
         return -1;
@@ -83,6 +83,6 @@ public class Main {
         tabla.leer_archivo_csv("/Users/luismiguelurbez/Downloads/palabras.csv");
         tabla.cantidad_elementos();
         tabla.sondeo(5, 28);
-        tabla.buscar("Hola");
+        tabla.buscar("hola");
     }
 }
