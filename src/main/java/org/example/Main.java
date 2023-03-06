@@ -83,6 +83,5 @@ public class Main {
         tabla.leer_archivo_csv("/Users/luismiguelurbez/Downloads/palabras.csv");
         tabla.cantidad_elementos();
         tabla.sondeo(5, 28);
-        tabla.buscar("hola");
     }
 }
