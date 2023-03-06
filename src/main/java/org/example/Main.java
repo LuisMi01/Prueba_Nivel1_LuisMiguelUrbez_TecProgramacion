@@ -51,7 +51,7 @@ public class Main {
         return ascii % tamano_tabla;
     }
     private int sondeo(int posicion, int tamano_tabla) {
-        System.out.println("Se aplicó el método de sondeo");
+        System.out.println("Se aplicó el método de sondeo a la lista");
         return (posicion + 1) % tamano_tabla;
     }
 
